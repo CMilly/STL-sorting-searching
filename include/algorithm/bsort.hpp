@@ -15,7 +15,7 @@
  * @param _n2
  */
 template <class T>
-void swap(T& _n1, T& _n2) {
+void b_swap(T& _n1, T& _n2) {
     T temp = _n1;
     _n1 = _n2;
     _n2 = temp;
