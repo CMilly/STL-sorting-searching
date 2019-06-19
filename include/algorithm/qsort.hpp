@@ -7,73 +7,128 @@
 
 #include <iostream>
 #include <array>
+#include <helpers.hpp>
 
 /**
- *
- * @tparam T
- * @param _n1
- * @param _n2
- */
-template <typename T>
-void q_swap(T& _n1, T& _n2){
-    T temp = _n1;
-    _n1 = _n2;
-    _n2 = temp;
-}
-
-/**
- *
+ * Establish a pivot based on the "Median-of-three"
  * @tparam T
  * @tparam N
  * @param arr
  * @param left
  * @param right
- * @return
+ * @return T pivot
  */
 template <typename T, std::size_t N>
 T med_three(std::array<T, N> &arr, std::size_t left, std::size_t right){
     T mid = (left + right) / 2;
 
     if(arr[right] < arr[left]){
-        q_swap(arr[left], arr[right]);
+        helpers::swap(arr[left], arr[right]);
     }
     if(arr[mid] < arr[left]){
-        q_swap(arr[mid], arr[left]);
+        helpers::swap(arr[mid], arr[left]);
     }
     if(arr[right] < arr[mid]){
-        q_swap(arr[right], arr[mid]);
+        helpers::swap(arr[right], arr[mid]);
     }
     return mid;
 }
 
 /**
- *
+ * Partition the given T *arr
  * @tparam T
  * @tparam N
  * @param arr
  * @param left
  * @param right
- * @return
+ * @return T partition (index)
  */
-template <typename T, std::size_t N>
-std::size_t partition(std::array<T, N> &arr, std::size_t left, std::size_t right){
-    T pivot = med_three(arr, left, right);
+template <typename T>
+T partition(T *arr, std::size_t left, std::size_t right){
+    T pivot = arr[right];
+    T i_left = left;
+    T i_right = right-1;
 
     for(;;){
-        while(arr[right--] > pivot);
-        while(arr[left++] < pivot);
-        if(left >= right){
-            break;
+        while(arr[i_right] > pivot) i_right--; //pseudo - While the number on the right is not greater than the pivot
+        while(arr[i_left] < pivot) i_left++; //pseudo - While the number on the left is not less than the pivot
+
+        //pseudo - Loop and increment until (stop) the number on the left is greater than the pivot, and loop and increment
+        //until (stop) the number on the right is less than the pivot
+
+        if(i_left <= i_right){ //pseudo - If the left index pointer is still less than or equal to the right index pointer, (swap)
+            helpers::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
         }else{
-            q_swap(arr[left], arr[right]);
+            break;
         }
     }
-    q_swap(arr[pivot], arr[left]);
-    return left;
+
+    //pseudo - If broken out of loop, left pointer exceeded right pointer
+    //Establish the partition (i_left) and swap the temporary pivot (arr[right]) with the partition
+    helpers::swap(arr[right], arr[i_left]);
+
+    //Return partition
+    return i_left;
 }
 
 /**
- *
+ * Partition the given std::array<T,N>
+ * @tparam T
+ * @tparam N
+ * @param arr
+ * @param left
+ * @param right
+ * @return T partition (index)
+ */
+template <typename T, std::size_t N>
+T partition(std::array<T, N> &arr, std::size_t left, std::size_t right){
+    T pivot = arr[right];
+    T i_left = left;
+    T i_right = right-1;
+
+    for(;;){
+        while(arr[i_right] > pivot) i_right--; //pseudo - While the number on the right is not greater than the pivot
+        while(arr[i_left] < pivot) i_left++; //pseudo - While the number on the left is not less than the pivot
+
+        //pseudo - Loop and increment until (stop) the number on the left is greater than the pivot, and loop and increment
+        //until (stop) the number on the right is less than the pivot
+
+        if(i_left <= i_right){ //pseudo - If the left index pointer is still less than or equal to the right index pointer, (swap)
+            helpers::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
+        }else{
+            break;
+        }
+    }
+
+    //pseudo - If broken out of loop, left pointer exceeded right pointer
+    //Establish the partition (i_left) and swap the temporary pivot (arr[right]) with the partition
+    helpers::swap(arr[right], arr[i_left]);
+
+    //Return partition
+    return i_left;
+}
+
+/**
+ * Take in a T *arr and begin the qsort process
+ * @tparam T
+ * @param arr
+ * @param left
+ * @param right
+ */
+template <typename T>
+void qsort(T *arr, std::size_t left, std::size_t right){
+    //pseudo - If our left pointer has exceeded our right pointer
+    //We know that for our given array, it has been fully partitioned
+    if(left >= right){
+        return;
+    }
+    T p = partition(arr, left, right);
+    qsort(arr, left, p - 1);
+    qsort(arr, p + 1, right);
+}
+
+/**
+ * Take in a std::array<T,N> and begin the qsort process
  * @tparam T
  * @tparam N
  * @param arr
@@ -82,11 +137,12 @@ std::size_t partition(std::array<T, N> &arr, std::size_t left, std::size_t right
  */
 template <typename T, std::size_t N>
 void qsort(std::array<T, N> &arr, std::size_t left, std::size_t right){
-    std::cout << arr[0] << std::endl;
+    //pseudo - If our left pointer has exceeded our right pointer
+    //We know that for our given array, it has been fully partitioned
     if(left >= right){
         return;
     }
-    std::size_t p = partition(arr, left, right);
+    T p = partition(arr, left, right);
     qsort(arr, left, p - 1);
     qsort(arr, p + 1, right);
 }

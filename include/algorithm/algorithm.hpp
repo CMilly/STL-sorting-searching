@@ -7,5 +7,7 @@
 
 #include <bsort.hpp>
 #include <qsort.hpp>
+#include <slcsort.hpp>
+#include <helpers.hpp>
 
 #endif //SORTING_ALGORITHM_HPP

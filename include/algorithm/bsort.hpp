@@ -7,38 +7,29 @@
 
 #include <iostream>
 #include <array>
+#include <helpers.hpp>
 
 /**
- * THIS NEEDS TO BE PRIVATE
- * @tparam T
- * @param _n1
- * @param _n2
- */
-template <class T>
-void b_swap(T& _n1, T& _n2) {
-    T temp = _n1;
-    _n1 = _n2;
-    _n2 = temp;
-}
-
-/**
- *
+ * Take in an array and begin the bsort process
  * @tparam T
  * @param arr
  * @param N
  */
 template <class T>
-void bsort(T *arr, const size_t &N) {
-    bool swapped;
+void bsort(T *arr, const std::size_t &N) {
+    bool swapped; //flag for early break of loop (resulting in better Time Complexity)
     for(int i = 0; i < N; i++){
         swapped = false;
+
+        //Through each iteration, "shrink" the array based upon i
         for(int j = 0; j < N - i - 1; j++){
             if(arr[j] > arr[j+1]){
-                swap(arr[j], arr[j+1]);
+                helpers::swap(arr[j], arr[j+1]);
                 swapped = true;
             }
         }
-        if(swapped == false){
+        //If not true
+        if(!swapped){
             std::cout << "Num of iterations: " << i << std::endl;
             break;
         }
@@ -46,23 +37,26 @@ void bsort(T *arr, const size_t &N) {
 }
 
 /**
- *
+ * Take in an array and begin the bsort process
  * @tparam T
  * @tparam N
  * @param arr
  */
 template <class T, size_t N>
 void bsort(std::array<T, N> &arr) {
-    bool swapped;
+    bool swapped; //flag for early break of loop (resulting in better Time Complexity)
     for(int i = 0; i < arr.size(); i++){
         swapped = false;
+
+        //Through each iteration, "shrink" the array based upon i
         for(int j = 0; j < arr.size() - i - 1; j++){
             if(arr[j] > arr[j+1]){
-                swap(arr[j], arr[j+1]);
+                helpers::swap(arr[j], arr[j+1]);
                 swapped = true;
             }
         }
-        if(swapped == false){
+        //If not true
+        if(!swapped){
             std::cout << "Num of iterations: " << i << std::endl;
             break;
         }
