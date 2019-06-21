@@ -1,6 +1,9 @@
-//
-// Created by cameron on 6/19/2019.
-//
+/**
+ * Name: helpers.hpp
+ * Description: Helper library for sorting and searching
+ * Author: Cameron Mims
+ * Date (started): 6/18/19
+ */
 
 #ifndef SORTING_HELPERS_HPP
 #define SORTING_HELPERS_HPP

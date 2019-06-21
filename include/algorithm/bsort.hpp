@@ -1,6 +1,9 @@
-//
-// Created by cameron on 6/13/2019.
-//
+/**
+ * Name: bsort.hpp
+ * Description: Generic implementation of bubble sort library for sorting
+ * Author: Cameron Mims
+ * Date (started): 6/18/19
+ */
 
 #ifndef SORTING_BSORT_HPP
 #define SORTING_BSORT_HPP
