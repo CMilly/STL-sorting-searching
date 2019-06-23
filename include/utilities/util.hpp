@@ -5,10 +5,10 @@
  * Date (started): 6/18/19
  */
 
-#ifndef SORTING_HELPERS_HPP
-#define SORTING_HELPERS_HPP
+#ifndef SORTING_UTIL_HPP
+#define SORTING_UTIL_HPP
 
-namespace helpers{
+namespace util{
     /**
      * Swap two given elements
      * @tparam T
@@ -23,4 +23,4 @@ namespace helpers{
     }
 }
 
-#endif //SORTING_HELPERS_HPP
+#endif //SORTING_UTIL_HPP

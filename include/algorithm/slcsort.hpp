@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <array>
-#include <helpers.hpp>
+#include <util.hpp>
 
 /**
  * Take in a T *arr and begin the selection sort process
@@ -32,7 +32,7 @@ void slcsort(T *arr, const std::size_t __N){
         }
         //pseudo: Once we have looped through all elements in arr
         //Min has been established, and swap with 'i'
-        helpers::swap(arr[min], arr[i]);
+        util::swap(arr[min], arr[i]);
     }
 }
 
@@ -56,7 +56,7 @@ void slcsort(std::array<T,__N> &arr){
         }
         //pseudo: Once we have looped through all elements in arr
         //Min has been established, and swap with 'i'
-        helpers::swap(arr[min], arr[i]);
+        util::swap(arr[min], arr[i]);
     }
 }
 

@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <array>
-#include <helpers.hpp>
+#include <util.hpp>
 
 /**
  * Establish a pivot based on the "Median-of-three"
@@ -26,13 +26,13 @@ T med_three(std::array<T, N> &arr, std::size_t __left, std::size_t __right){
     T mid = (__left + __right) / 2;
 
     if(arr[__right] < arr[__left]){
-        helpers::swap(arr[__left], arr[__right]);
+        util::swap(arr[__left], arr[__right]);
     }
     if(arr[mid] < arr[__left]){
-        helpers::swap(arr[mid], arr[__left]);
+        util::swap(arr[mid], arr[__left]);
     }
     if(arr[__right] < arr[mid]){
-        helpers::swap(arr[__right], arr[mid]);
+        util::swap(arr[__right], arr[mid]);
     }
     return mid;
 }
@@ -60,7 +60,7 @@ T partition(T *arr, std::size_t __left, std::size_t __right){
         //until (stop) the number on the right is less than the pivot
 
         if(i_left <= i_right){ //pseudo - If the left index pointer is still less than or equal to the right index pointer, (swap)
-            helpers::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
+            util::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
         }else{
             break;
         }
@@ -68,7 +68,7 @@ T partition(T *arr, std::size_t __left, std::size_t __right){
 
     //pseudo - If broken out of loop, left pointer exceeded right pointer
     //Establish the partition (i_left) and swap the temporary pivot (arr[right]) with the partition
-    helpers::swap(arr[__right], arr[i_left]);
+    util::swap(arr[__right], arr[i_left]);
 
     //Return partition
     return i_left;
@@ -97,7 +97,7 @@ T partition(std::array<T, N> &arr, std::size_t __left, std::size_t __right){
         //until (stop) the number on the right is less than the pivot
 
         if(i_left <= i_right){ //pseudo - If the left index pointer is still less than or equal to the right index pointer, (swap)
-            helpers::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
+            util::swap(arr[i_left], arr[i_right]); //swap the actual elements - arr[elem]
         }else{
             break;
         }
@@ -105,7 +105,7 @@ T partition(std::array<T, N> &arr, std::size_t __left, std::size_t __right){
 
     //pseudo - If broken out of loop, left pointer exceeded right pointer
     //Establish the partition (i_left) and swap the temporary pivot (arr[right]) with the partition
-    helpers::swap(arr[__right], arr[i_left]);
+    util::swap(arr[__right], arr[i_left]);
 
     //Return partition
     return i_left;

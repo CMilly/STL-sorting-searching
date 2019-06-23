@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <array>
-#include <helpers.hpp>
+#include <util.hpp>
 
 /**
  * Take in an array and begin the bsort process
@@ -27,7 +27,7 @@ void bsort(T *arr, const std::size_t &N) {
         //Through each iteration, "shrink" the array based upon i
         for(int j = 0; j < N - i - 1; j++){
             if(arr[j] > arr[j+1]){
-                helpers::swap(arr[j], arr[j+1]);
+                util::swap(arr[j], arr[j+1]);
                 swapped = true;
             }
         }
@@ -54,7 +54,7 @@ void bsort(std::array<T, N> &arr) {
         //Through each iteration, "shrink" the array based upon i
         for(int j = 0; j < arr.size() - i - 1; j++){
             if(arr[j] > arr[j+1]){
-                helpers::swap(arr[j], arr[j+1]);
+                util::swap(arr[j], arr[j+1]);
                 swapped = true;
             }
         }
